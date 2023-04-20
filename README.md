@@ -1,12 +1,7 @@
+# Weakly supervised contrastive learning infers molecular subtypes and recurrence risk of breast cancer from pathology images 
 
-# Source code and data for [paper](https://www.biorxiv.org/content/10.1101/2023.04.13.536813v1)  
-## Weakly supervised contrastive learning infers molecular subtypes and recurrence risk of breast cancer from pathology images 
-
-
-It is a multi-stage model. 
-Firstly, [adversarial contrastive learning](https://arxiv.org/abs/2011.08435) is used to unsupervised extract tile-level features, 
-then the attention-pooling is used to aggregate tile-level features into slide-level features, 
-and finally it is used in the downstream tasks,including tumor diagnosis, gene expression level prediction, molecular typing, recurrence, and drug response prediction, as well as a prognostic risk score.
+Firstly, [adversarial contrastive learning](https://arxiv.org/abs/2011.08435) is used to train a encoder to extract tile-level features, and
+then the attentive pooling is used to aggregate tile features to build the slide features. The slide feature is used in various downstream tasks, including tumor diagnosis, gene expression level prediction, molecular subtyping, recurrence risk prediction, and drug response prediction.
 ![avatar](framework.jpg)
 
 ## Segmentation and tiling
