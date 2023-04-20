@@ -1,5 +1,6 @@
 
-## Source code and data for paper Weakly supervised contrastive learning infers molecular subtypes and recurrence risk of breast cancer from pathology images (https://www.biorxiv.org/content/10.1101/2023.04.13.536813v1) 
+# Source code and data for [paper](https://www.biorxiv.org/content/10.1101/2023.04.13.536813v1)  
+## Weakly supervised contrastive learning infers molecular subtypes and recurrence risk of breast cancer from pathology images 
 
 
 It is a multi-stage model. 
