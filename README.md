@@ -1,7 +1,7 @@
-# 
-Source code and data for
-"Weakly supervised contrastive learning infers molecular subtypes and recurrence risk of breast cancer from pathology images"  
-[arxiv](https://www.biorxiv.org/content/10.1101/2023.04.13.536813v1)
+
+# Source code and data for [paper](https://www.biorxiv.org/content/10.1101/2023.04.13.536813v1)  
+## Weakly supervised contrastive learning infers molecular subtypes and recurrence risk of breast cancer from pathology images 
+
 
 It is a multi-stage model. 
 Firstly, [adversarial contrastive learning](https://arxiv.org/abs/2011.08435) is used to unsupervised extract tile-level features, 
@@ -9,9 +9,7 @@ then the attention-pooling is used to aggregate tile-level features into slide-l
 and finally it is used in the downstream tasks,including tumor diagnosis, gene expression level prediction, molecular typing, recurrence, and drug response prediction, as well as a prognostic risk score.
 ![avatar](framework.jpg)
 
-# Now Updating
-
-## Seg and Tile
+## Segmentation and tiling
 You can download your own wsi dataset to the directory slides, 
 then run data_processing/create_patches_fp.py to seg and tile wsis, 
 adjust the parameters according to your needs.  
@@ -26,7 +24,7 @@ Based on the previous step, you can randomly sample blocks for comparison learni
 python save_tiles.py --patch_size 256 --sample_number 100 --save_dir ../tiles_result
 ```  
 
-## Train Contrast Learning Model
+## Training contrastive learning model
 Run train_adco.py to train contrast learning model on tiles,
 you should write Adco/ops/argparser.py to configure the data source
 and the save address and ADCO related parameters firstly.
@@ -37,7 +35,7 @@ For example, you can use following command for training ADCO model with default 
 python3 train_adco.py --dist_url=tcp://localhost:10001 --data ../tiles_result/tiles_40x --save_path ../MODELS_SAVE --model_path ../MODELS_SAVE
 ```  
 
-## Extract Tile-Level Features
+## Extracting tile-level features
 Run data_processing/extract_features_fp.py to extract the tile-level features.
 For example, you can use following command for extracting features.  
 ``` shell
@@ -46,7 +44,7 @@ python extract_features_fp.py --data_h5_dir ../tile_results --data_slide_dir ../
 The above command will use the trained ADCO model in ```model_path``` to extract tile features in ```data_slide_dir```
 and save the features to ```feat_dir```. 
 
-## Train Classification Model
+## Training classification model
 Run train/train_tumor.py to perform downstream classification task. For example:  
 ``` shell
 python train_tumor.py --lr 0.0003 --epochs 30 --K 3 --model_type clam_sb --feature_path ../FEATURES --label tumor --save_path ../RESULTS
@@ -65,7 +63,7 @@ dataset_csv/tumor
 	     ├── ...
 	     ├── val_dataset_3.csv
 ```
-## Train Gene Regression Model
+## Training gene expression level
 Run train/train_gene.py to perform downstream regression task. For example:  
 ``` shell
 python train_gene.py --lr 0.0003 --epochs 30 --K 3 --model_type clam_mb --feature_path ../FEATURES --label all --save_path ../RESULTS
